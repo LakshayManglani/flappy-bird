@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WallGenerator : MonoBehaviour
@@ -39,7 +38,7 @@ public class WallGenerator : MonoBehaviour
         Vector3 spawnPosition = transform.localPosition + new Vector3(0, yPos, 0);
         GameObject gameObject = Instantiate(wallPrefab, spawnPosition, Quaternion.identity);
 
-        if(yPos < 0)
+        if (yPos < 0)
         {
             gameObject.transform.Rotate(new Vector3(0, 0, -180));
         }

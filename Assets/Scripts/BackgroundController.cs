@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BackgroundController : MonoBehaviour
@@ -12,7 +10,7 @@ public class BackgroundController : MonoBehaviour
     void Update()
     {
         // Reset Postion
-        if(transform.localPosition.x <= endPostion)
+        if (transform.localPosition.x <= endPostion)
         {
             transform.localPosition = new Vector3(resetPostion, 0f, 0f);
             return;
