@@ -8,7 +8,7 @@ public class OptionMenu : MonoBehaviour
 
     public void Start()
     {
-        if (File.Exists(Application.persistentDataPath + "/option.data"))
+        if (File.Exists(SaveSystem.path))
         {
             Load();
         }

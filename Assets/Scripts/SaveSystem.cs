@@ -1,30 +1,21 @@
 using UnityEngine;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 public class SaveSystem : MonoBehaviour
 {
-    public static string path = Application.persistentDataPath + "/option.data";
+    public static string path = Application.persistentDataPath + "/option.json";
     public static void Save(OptionMenu optionMenu)
     {
-        BinaryFormatter formatter = new();
-        FileStream stream = new(path, FileMode.Create);
-
         OptionData optionData = new(optionMenu);
-
-        formatter.Serialize(stream, optionData);
-
-        stream.Close();
+        File.WriteAllText(path, JsonUtility.ToJson(optionData));
     }
 
     public static OptionData Load()
     {
         if (File.Exists(path))
         {
-            BinaryFormatter formatter = new();
-            FileStream stream = new(path, FileMode.Open);
-            OptionData optionData = formatter.Deserialize(stream) as OptionData;
-            stream.Close();
+            string json = File.ReadAllText(path);
+            OptionData optionData = JsonUtility.FromJson<OptionData>(json);
             return optionData;
         }
 
