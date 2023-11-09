@@ -7,9 +7,9 @@ public class WallGenerator : MonoBehaviour
     public GameObject blockPrefab;
     public float moveSpeed = 2f;
     public float yPostion = 2.5f;
-    public int highestInstances = 4;
     public float interval = 2.0f;
 
+    private int highestInstances;
     private int blockInstances;
     private WaitForSeconds waitTime;
 
@@ -23,7 +23,8 @@ public class WallGenerator : MonoBehaviour
     {
         while (true) // Infinite loop to keep displaying the object.
         {
-            blockInstances = Random.Range(0, highestInstances + 1);
+            highestInstances = Random.Range(3, 5);
+            blockInstances = Random.Range(1, highestInstances + 1);
             CreateWall(yPostion, blockInstances);
             CreateWall(-yPostion, highestInstances - blockInstances);
             waitTime = new WaitForSeconds(Random.Range(1.3f, interval));
