@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class BirdController : MonoBehaviour
@@ -8,6 +9,9 @@ public class BirdController : MonoBehaviour
     public GameObject pauseMenu;
     public AudioSource backgroundMusic;
 
+    public TextMeshProUGUI score;
+    public int scoreValue = 0;
+
     private Rigidbody2D rb2d;
     private bool isJumping = false;
     private AudioSource audioSource;
@@ -16,6 +20,7 @@ public class BirdController : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
+        score.text = "Score: " + scoreValue.ToString();
     }
 
     private void Update()
@@ -35,6 +40,16 @@ public class BirdController : MonoBehaviour
             Time.timeScale = 0;
             backgroundMusic.Pause();
             retryMenu.SetActive(true);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Coin")
+        {
+            Destroy(collider.gameObject);
+            scoreValue++;
+            score.text = "Score: " + scoreValue.ToString();
         }
     }
 

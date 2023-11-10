@@ -17,7 +17,7 @@ public class WallCreator : MonoBehaviour
 
         // Create and instantiate the gameObject
         gameObjectsArray = new GameObject[numberOfInstances];
-        for(int i = 0; i < numberOfInstances; i++)
+        for (int i = 0; i < numberOfInstances; i++)
         {
             gameObjectsArray[i] = InstantiatePrefab(i);
         }
@@ -34,3 +34,5 @@ public class WallCreator : MonoBehaviour
         return gameObject;
     }
 }
+
+// float coinYPosition = yPostion - (0.7666f * blockInstances) - (4 - highestInstances + 2.5223f) / 2;
