@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
@@ -8,6 +9,9 @@ public class BirdController : MonoBehaviour
     public GameObject retryMenu;
     public GameObject pauseMenu;
     public AudioSource backgroundMusic;
+
+    public AudioSource birdHitSound;
+    public AudioSource coinCollectSound;
 
     public TextMeshProUGUI score;
     public int scoreValue = 0;
@@ -32,24 +36,30 @@ public class BirdController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private async void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
             pauseMenu.SetActive(false);
             Time.timeScale = 0;
             backgroundMusic.Pause();
+            birdHitSound.Play();
+
+            await Task.Delay(1000);
             retryMenu.SetActive(true);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private async void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Coin")
         {
             Destroy(collider.gameObject);
             scoreValue++;
             score.text = "Score: " + scoreValue.ToString();
+            coinCollectSound.Play();
+            await Task.Delay(500);
+            coinCollectSound.Stop();
         }
     }
 

@@ -7,8 +7,15 @@ public class GameController : MonoBehaviour
     public AudioSource backgroundMusic;
     public Slider backgroundMusicSlider;
 
+    public GameObject resumeMenu;
+    public GameObject retryMenu;
+    public GameObject pauseMenu;
+
     public void Start()
     {
+        pauseMenu.SetActive(true);
+        retryMenu.SetActive(false);
+        resumeMenu.SetActive(false);
         OptionData optionData = SaveSystem.Load();
         backgroundMusic.volume = optionData.volume;
     }
