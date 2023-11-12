@@ -33,7 +33,7 @@ public class WallGenerator : MonoBehaviour
             CreateWall(coinYPosition, 1, coinPrefab);
 
             CreateWall(-yPostion, highestInstances - blockInstances, blockPrefab);
-            waitTime = new WaitForSeconds(Random.Range(1.3f, interval));
+            waitTime = new WaitForSeconds(Random.Range(1.0f, interval));
 
             // Wait for the specified interval.
             yield return waitTime;
