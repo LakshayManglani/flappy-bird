@@ -36,7 +36,7 @@ public class BirdController : MonoBehaviour
         }
     }
 
-    private async void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
@@ -44,8 +44,6 @@ public class BirdController : MonoBehaviour
             Time.timeScale = 0;
             backgroundMusic.Pause();
             birdHitSound.Play();
-
-            await Task.Delay(1000);
             retryMenu.SetActive(true);
         }
     }
